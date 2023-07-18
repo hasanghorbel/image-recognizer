@@ -6,7 +6,7 @@ from torchvision.models import ResNet50_Weights, resnet50
 
 parser = argparse.ArgumentParser(description="recognize images based on Imagenet dataset")
 parser.add_argument('-p', '--path', default='imgs',
-                    type=str, help='path to images')
+                    type=str, help='path to directory of images')
 args = parser.parse_args()
 
 mypath = args.path
