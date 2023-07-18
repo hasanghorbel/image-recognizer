@@ -1,16 +1,24 @@
+import os
+import argparse
+
 import PIL.Image
+from torchvision.models import ResNet50_Weights, resnet50
 
-from os import listdir
-from os.path import isfile, join
+parser = argparse.ArgumentParser(description="recognize images based on Imagenet dataset")
+parser.add_argument('-p', '--path', default='imgs',
+                    type=str, help='path to images')
+args = parser.parse_args()
 
-from torchvision.models import resnet50, ResNet50_Weights
-
-mypath = './imgs/'
-imgs = [f for f in listdir(mypath) if isfile(join(mypath, f))]
+mypath = args.path
+imgs = list()
+if os.path.exists(mypath):
+    for f in os.listdir(mypath):
+        if os.path.isfile(os.path.join(mypath, f)) and f.endswith(('.png', '.jpg', '.jpeg')):
+            imgs.append(f)
 
 for f in imgs:
     # read image
-    img = PIL.Image.open(mypath + f).convert('RGB')
+    img = PIL.Image.open(os.path.join(mypath, f)).convert('RGB')
 
     # Initialize model with weights
     weights = ResNet50_Weights.DEFAULT
