@@ -1,5 +1,5 @@
-# Image-Recognizer
-## Imagenet image recognizer
+# Image Recognizer
+## built on Imagenet dataset
 ### Install requirements with command:
 ```
 pip install -r requirements.txt
